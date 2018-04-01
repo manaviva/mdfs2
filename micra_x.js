@@ -12,6 +12,7 @@
   var r_status="0";
   var r_rotation=0;
   var r_pitch=0;
+  var r_my_rtn="";
 
   ext._shutdown = function() {};
 
@@ -419,6 +420,75 @@
     return r_status;
   };
 
+  ext.my_rtn = function(){
+    return r_my_rtn;
+  };
+
+  ext.setPen = function(x, y, z, rot, pit){
+    $.ajax({
+      type: "GET",
+      url: consturl+"setPen/"+x+"/"+y+"/"+z+"/"+rot+"/"+pit,
+      dataType: "text"
+    }).done(function( text ) {
+      var msg=text.split(" ");
+      r_status=msg[1];
+    }).fail(function( text ) {
+      r_status=constErrNone;
+    });
+  };
+
+  ext.downPen = function(id, data){
+    $.ajax({
+      type: "GET",
+      url: consturl+"downPen/"+id+"/"+data,
+      dataType: "text"
+    }).done(function( text ) {
+      var msg=text.split(" ");
+      r_status=msg[1];
+    }).fail(function( text ) {
+      r_status=constErrNone;
+    });
+  };
+
+  ext.strokePen = function(d){
+    $.ajax({
+      type: "GET",
+      url: consturl+"strokePen/"+d,
+      dataType: "text"
+    }).done(function( text ) {
+      var msg=text.split(" ");
+      r_status=msg[1];
+    }).fail(function( text ) {
+      r_status=constErrNone;
+    });
+  };
+
+  ext.turnPen = function(rot,pit){
+    $.ajax({
+      type: "GET",
+      url: consturl+"turnPen/"+rot+"/"+pit,
+      dataType: "text"
+    }).done(function( text ) {
+      var msg=text.split(" ");
+      r_status=msg[1];
+    }).fail(function( text ) {
+      r_status=constErrNone;
+    });
+  };
+
+  ext.upPen = function(){
+    $.ajax({
+      type: "GET",
+      url: consturl+"upPen",
+      dataType: "text"
+    }).done(function( text ) {
+      var msg=text.split(" ");
+      r_status=msg[1];
+    }).fail(function( text ) {
+      r_status=constErrNone;
+    });
+  };
+
   ext.doSomething = function(args){
     $.ajax({
       type: "GET",
@@ -426,7 +496,8 @@
       dataType: "text"
     }).done(function( text ) {
       var msg=text.split(" ");
-      r_status=msg[1];
+      r_my_rtn=msg[1];
+      r_status=constOK_Done;
     }).fail(function( text ) {
       r_status=constErrNone;
     });
@@ -454,6 +525,11 @@
         [" ", "テレポートする 座標 x:%n y:%n z:%n", "Teleport",0,0,0],
         [" ", "向きを設定する 左右 %n °　上下 %n °", "setPlayerRotPit",0,0],
         [" ", "チャットする「 %s 」", "Chat","Hello!"],
+        [" ", "ペンの位置と向きを ｜座標 x:%n y:%n z:%n ｜方角 %m.rot ｜上下の向き %m.pitch ｜ に設定する", "setPen",0,0,0,"南","水平"],
+        [" ", "ペンを下ろす ｜ブロック ID:%n 値:%n", "downPen",1,0],
+        [" ", "ペンを長さ %n ブロック分進める", "strokePen",1],
+        [" ", "ペンの向きを 右に %n °　上に %n ° ずつ変える", "turnPen",30,0],
+        [" ", "ペンを上げる", "upPen"],
         [" ", "原点付近を平地にリセットする", "Reset"],
         [" ", "マインクラフトに接続する", "ConnectLocal"],
         [" ", "サーバーに接続する host:%s port: %n ", "ConnectServer","localhost","4711"],
@@ -466,10 +542,13 @@
         ["r", "自分のＺ座標", "pos_z"],
         ["r", "自分の向き（上下）", "pitch"],
         ["r", "自分の向き（左右）", "rotation"],
-        ["r", "状態", "status"]
+        ["r", "状態", "status"],
+        ["r", "戻り値", "my_rtn"]
     ],
     menus: {
-        Font: ['8x8','10pt','10ptbold','6pt','6ptmono','7pt','9pt','9ptbold','architectlg','architectsm','bigfoot','casual','casualbold','macfont','mactall','metrix7pt','nicefont','nicefontbold','palmboldeu','palmnormeu','pda','pdabold','script','squat11pt','squat8pt','squatcaps8pt','tallfont','thin11pt','thin9pt']
+        Font: ['8x8','10pt','10ptbold','6pt','6ptmono','7pt','9pt','9ptbold','architectlg','architectsm','bigfoot','casual','casualbold','macfont','mactall','metrix7pt','nicefont','nicefontbold','palmboldeu','palmnormeu','pda','pdabold','script','squat11pt','squat8pt','squatcaps8pt','tallfont','thin11pt','thin9pt'],
+        rot: ['北','北東','東','南東','南','南西','西','北西'],
+        pitch: ['真上','斜め上45度','水平','斜め下45度','真下']
     },
     url: consturl,
     displayName: 'Minecraft-Driver 1.0'
