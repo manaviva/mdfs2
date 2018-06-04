@@ -531,6 +531,7 @@
     ext.pre_drawText = pre_drawText;
 
     function ResetHere(){
+        Chat('reset around here start!');
         getPlayerPos();
         sleep(500);
         // reset, the kind of set blocks is depends on height
@@ -538,9 +539,9 @@
         var my_y = parseInt(r_pos_y);
         var my_z = parseInt(r_pos_z);
         alert('(x,y,z)=(' + my_x + ',' + my_y + ',' + my_z + ')');
-        if(50 <= my_y){
+        if(my_y >= 50){
             setBlocks(0,0, (my_x -50), (my_y-50), (my_z -50), (my_x +50), (my_y+50), (my_z +50));
-        }else if( -51 < my_y && my_y < 50){
+        }else if( my_y > -51 && my_y < 50){
             setBlocks(0, 0, (my_x -50), 0, (my_z -50), (my_x +50), (my_y+50), (my_z +50));
             if(my_y <= 49){
                 setBlocks(2, 0, (my_x -50), -1, (my_z -50), (my_x +50), -1, (my_z +50));
@@ -550,8 +551,10 @@
             }
         }else if( my_y <= -52 ){
             setBlocks(1, 0, (my_x -50), (my_y-50), (my_z -50), (my_x +50), (my_y+50), (my_z +50));
+        }else{
+            Chat('cannot reset!');
         }
-        Chat('reset around here!');
+        Chat('reset around here done!');
     }
     ext.ResetHere = ResetHere;
 
