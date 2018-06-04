@@ -200,10 +200,10 @@
   }
   ext.setBlocks = setBlocks;
 
-  function drawText(str, font, id1, id2, deg, x, y, z){
+  function drawText(str, font, id1, dat1, id2, dat2, deg, x, y, z){
     $.ajax({
       type: "GET",
-      url: consturl+"drawText/"+str+"/"+font+"/"+id1+"/"+id2+"/"+deg+"/"+x+"/"+y+"/"+z,
+      url: consturl+"drawText/"+str+"/"+font+"/"+id1+"/"+dat1+"/"+id2+"/"+dat2+"/"+deg+"/"+x+"/"+y+"/"+z,
       dataType: "text"
     }).done(function( text ) {
       var msg=text.split(" ");
@@ -526,7 +526,7 @@
     ext.pre_drawLine = pre_drawLine;
 
     function pre_drawText(IdData, aStr, aFont, x, y, z){
-        drawText(aStr, aFont, IdData[0], 0, 0, x, y, z);
+        drawText(aStr, aFont, IdData[0], IdData[1], 0, 0, 0, x, y, z);
     }
     ext.pre_drawText = pre_drawText;
 
