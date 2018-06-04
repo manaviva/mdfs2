@@ -503,6 +503,23 @@
     });
   };
 
+    function ResetHere(){
+        $.ajax({
+          type: "GET",
+          url: consturl+"ResetHere",
+          dataType: "text"
+        }).done(function( text ) {
+          var msg=text.split(" ");
+          r_status=msg[1];
+          if(text != constOK_Done){
+          }
+        }).fail(function( text ) {
+          r_status=constErrNone;
+        });
+    }
+    ext.ResetHere = ResetHere;
+
+
   var descriptor = {
     blocks: [
         [" ", "１つ置く ｜ブロック ID:%n 値:%n ｜座標 x:%n y:%n z:%n", "setBlockData",1,0,0,0,0],
@@ -530,6 +547,7 @@
         [" ", "ペンを長さ %n ブロック分進める", "strokePen",1],
         [" ", "ペンの向きを 右に %n °　上に %n ° ずつ変える", "turnPen",30,0],
         [" ", "ペンを上げる", "upPen"],
+        [" ", "周囲をリセット", "ResetHere"],
         [" ", "原点付近を平地にリセットする", "Reset"],
         [" ", "マインクラフトに接続する", "ConnectLocal"],
         [" ", "サーバーに接続する host:%s port: %n ", "ConnectServer","localhost","4711"],
