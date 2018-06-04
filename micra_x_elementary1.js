@@ -533,19 +533,22 @@
     function ResetHere(){
         getPlayerPos();
         sleep(500);
-        // air
-        if(50 <= r_pos_y){
-            setBlocks(0,0, (r_pos_x -50), (r_pos_y-50), (r_pos_z -50), (r_pos_x +50), (r_pos_y+50), (r_pos_z +50));
-        }else if( -51 < r_pos_y && r_pos_y < 50){
-            setBlocks(0, 0, (r_pos_x -50), 0, (r_pos_z -50), (r_pos_x +50), (r_pos_y+50), (r_pos_z +50));
-            if(r_pos_y <= 49){
-                setBlocks(2, 0, (r_pos_x -50), -1, (r_pos_z -50), (r_pos_x +50), -1, (r_pos_z +50));
+        // reset, the kind of set blocks is depends on height
+        var my_x = parseInt(r_pos_x);
+        var my_y = parseInt(r_pos_y);
+        var my_z = parseInt(r_pos_z);
+        if(50 <= my_y){
+            setBlocks(0,0, (my_x -50), (my_y-50), (my_z -50), (my_x +50), (my_y+50), (my_z +50));
+        }else if( -51 < my_y && my_y < 50){
+            setBlocks(0, 0, (my_x -50), 0, (my_z -50), (my_x +50), (my_y+50), (my_z +50));
+            if(my_y <= 49){
+                setBlocks(2, 0, (my_x -50), -1, (my_z -50), (my_x +50), -1, (my_z +50));
             }
-            if(r_pos_y <= 48){
-                setBlocks(1, 0, (r_pos_x -50), (r_pos_y-50), (r_pos_z -50), (r_pos_x +50), -2, (r_pos_z +50));
+            if(my_y <= 48){
+                setBlocks(1, 0, (my_x -50), (my_y-50), (my_z -50), (my_x +50), -2, (my_z +50));
             }
-        }else if( r_pos_y <= -52 ){
-            setBlocks(1, 0, (r_pos_x -50), (r_pos_y-50), (r_pos_z -50), (r_pos_x +50), (r_pos_y+50), (r_pos_z +50));
+        }else if( my_y <= -52 ){
+            setBlocks(1, 0, (my_x -50), (my_y-50), (my_z -50), (my_x +50), (my_y+50), (my_z +50));
         }
         Chat('reset around here!');
     }
@@ -570,6 +573,7 @@
         [" ", "マイクラに接続", "ConnectLocal"],
         [" ", "切断する", "Disconnect"],
         [" ", "今の位置を調べる", "getPlayerPos"],
+        [" ", "ブロックを調べる x:%n y:%n z:%n", "getBlockInfo",0,0,0],
         [" ", "今の向きを調べる", "getPlayerRotPit"],
         [" ", "向きを設定する 左右 %n °　上下 %n °", "setPlayerRotPit",0,0],
         ["r", "ブロックのID", "blockId"],
