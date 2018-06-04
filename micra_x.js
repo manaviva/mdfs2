@@ -321,10 +321,10 @@
     });
   };
 
-  ext.drawText = function(str, font, id1, id2, deg, x, y, z){
+  ext.drawText = function(str, font, id1, dat1, id2, dat2, deg, x, y, z){
     $.ajax({
       type: "GET",
-      url: consturl+"drawText/"+str+"/"+font+"/"+id1+"/"+id2+"/"+deg+"/"+x+"/"+y+"/"+z,
+      url: consturl+"drawText/"+str+"/"+font+"/"+id1+"/"+dat1+"/"+id2+"/"+dat2+"/"+deg+"/"+x+"/"+y+"/"+z,
       dataType: "text"
     }).done(function( text ) {
       var msg=text.split(" ");
@@ -529,7 +529,7 @@
         [" ", "おうぎ形を描く ｜ブロック ID:%n 値:%n ｜半径:%n ｜中心 x:%n y:%n z:%n ｜開始:%n °　終了:%n ° ｜回転 上下:%n °　左右:%n °", "drawArcRadis",1,0,10,0,0,0,0,180,0,0],
         [" ", "だ円を描く ｜ブロック ID:%n 値:%n ｜半径:%n ｜Z比率:%n ｜中心 x:%n y:%n z:%n ｜開始:%n °　終了:%n ° ｜回転 上下:%n °　左右:%n °", "drawEllipse",1,0,10,1.5,0,0,0,0,360,0,0],
         [" ", "卵の輪郭を描く ｜ブロック ID:%n 値:%n ｜半径:%n ｜中心 x:%n y:%n z:%n ｜回転 上下:%n °　左右:%n °", "drawEgg",1,0,10,0,10,0,0,0],
-        [" ", "文字列を描く %s フォント:%m.Font ｜文字ブロックID:%n ｜背景ブロックID:%n ｜向き:%n °｜座標 x:%n y:%n z:%n", "drawText","Great!","8x8",1,0,0,0,0,0],
+        [" ", "文字列を描く %s フォント:%m.Font ｜文字ブロックID:%n 値:%n ｜背景ブロックID:%n 値:%n ｜向き:%n °｜座標 x:%n y:%n z:%n", "drawText","Great!","8x8",1,0,0,0,0,0,0,0],
         [" ", "直方体を描く ｜ブロック ID:%n 値:%n ｜座標 x:%n y:%n z:%n ～座標 x:%n y:%n z:%n", "setBlocks",1,0,0,0,0,0,0,1],
         [" ", "球を描く ｜ブロック ID:%n 値:%n ｜半径:%n ｜中心 x:%n y:%n z:%n", "drawBall",1,0,10,0,10,0],
         [" ", "球の一部を描く ｜ブロック ID:%n 値:%n ｜半径:%n ｜中心 x:%n y:%n z:%n ｜偏角 xr:%n °～ %n ° zr:%n °～ %n °｜回転 上下:%n °　左右:%n °", "drawBallPart",1,0,10,0,10,0,0,180,0,180,0,0],
