@@ -531,28 +531,18 @@
     ext.pre_drawText = pre_drawText;
 
     function ResetHere(){
-        //Chat('reset around here start!');
-        getPlayerPos();
-        // reset, the kind of set blocks is depends on height
-        var my_x = parseInt(r_pos_x);
-        var my_y = parseInt(r_pos_y);
-        var my_z = parseInt(r_pos_z);
-        if(my_y >= 50){
-            setBlocks(0,0, (my_x -50), (my_y-50), (my_z -50), (my_x +50), (my_y+50), (my_z +50));
-        }else if( my_y > -51 && my_y < 50){
-            setBlocks(0, 0, (my_x -50), 0, (my_z -50), (my_x +50), (my_y+50), (my_z +50));
-            if(my_y <= 49){
-                setBlocks(2, 0, (my_x -50), -1, (my_z -50), (my_x +50), -1, (my_z +50));
-            }
-            if(my_y <= 48){
-                setBlocks(1, 0, (my_x -50), (my_y-50), (my_z -50), (my_x +50), -2, (my_z +50));
-            }
-        }else if( my_y <= -52 ){
-            setBlocks(1, 0, (my_x -50), (my_y-50), (my_z -50), (my_x +50), (my_y+50), (my_z +50));
-        }else{
-            Chat('cannot reset!');
-        }
-        Chat('reset around here done!');
+        $.ajax({
+          type: "GET",
+          url: consturl+"ResetHere",
+          dataType: "text"
+        }).done(function( text ) {
+          var msg=text.split(" ");
+          r_status=msg[1];
+          if(text != constOK_Done){
+          }
+        }).fail(function( text ) {
+          r_status=constErrNone;
+        });
     }
     ext.ResetHere = ResetHere;
 
