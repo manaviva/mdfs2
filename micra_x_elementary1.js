@@ -533,12 +533,12 @@
     function ResetHere(){
         Chat('reset around here start!');
         getPlayerPos();
-        sleep(500);
+        //sleep(500);
         // reset, the kind of set blocks is depends on height
         var my_x = parseInt(r_pos_x);
         var my_y = parseInt(r_pos_y);
         var my_z = parseInt(r_pos_z);
-        alert('(x,y,z)=(' + my_x + ',' + my_y + ',' + my_z + ')');
+        //alert('(x,y,z)=(' + my_x + ',' + my_y + ',' + my_z + ')');
         if(my_y >= 50){
             setBlocks(0,0, (my_x -50), (my_y-50), (my_z -50), (my_x +50), (my_y+50), (my_z +50));
         }else if( my_y > -51 && my_y < 50){
