@@ -537,6 +537,7 @@
         var my_x = parseInt(r_pos_x);
         var my_y = parseInt(r_pos_y);
         var my_z = parseInt(r_pos_z);
+        alert('(x,y,z)=(' + my_x + ',' + my_y + ',' + my_z + ')');
         if(50 <= my_y){
             setBlocks(0,0, (my_x -50), (my_y-50), (my_z -50), (my_x +50), (my_y+50), (my_z +50));
         }else if( -51 < my_y && my_y < 50){
