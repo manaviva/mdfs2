@@ -511,17 +511,17 @@
     ext.carpet_NameToID = carpet_NameToID;
     
     function pre_setBlockData(IdData, x, y, z){
-        setBlockData(IdData[0], data[1], x, y, z);
+        setBlockData(IdData[0], IdData[1], x, y, z);
     }
     ext.pre_setBlockData = pre_setBlockData;
 
     function pre_setBlocks(IdData, x1, y1, z1, x2, y2, z2){
-        setBlocks(IdData[0], data[1], x1, y1, z1, x2, y2, z2);
+        setBlocks(IdData[0], IdData[1], x1, y1, z1, x2, y2, z2);
     }
     ext.pre_setBlocks = pre_setBlocks;
 
     function pre_drawLine(IdData, x1, y1, z1, x2, y2, z2){
-        drawLine(IdData[0], data[1], x1, y1, z1, x2, y2, z2);
+        drawLine(IdData[0], IdData[1], x1, y1, z1, x2, y2, z2);
     }
     ext.pre_drawLine = pre_drawLine;
 
