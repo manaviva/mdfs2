@@ -525,7 +525,7 @@
     }
     ext.pre_drawLine = pre_drawLine;
 
-    function pre_drawText(IdData, IdData2, aStr, aFont, x, y, z){
+    function pre_drawText(IdData, aStr, IdData2, aFont, x, y, z){
         if(IdData2 == ' '){
             drawText(aStr, aFont, IdData[0], IdData[1], 0, 0, 0, x, y, z);
         }else{
