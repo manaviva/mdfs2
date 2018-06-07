@@ -678,7 +678,7 @@
     function pre_drawCircle(IdData, x, y, z, radius, pit){
         // default: " ",0,0,0,10,"立てる"
         if(pit == "立てる"){
-            drawCircle(IdData[0], IdData[1], radius, x, y, z, 90, 0);
+            drawCircle(IdData[0], IdData[1], radius, x, y, z, -90, 0);
         }else{
             drawCircle(IdData[0], IdData[1], radius, x, y, z, 0, 0);
         }
@@ -688,7 +688,7 @@
     function pre_drawEllipse(IdData, x, y, z, radius, pit){
         // default: " ",0,0,0,10,"立てる"
         if(pit == "立てる"){
-            drawEllipse(IdData[0], IdData[1], radius, 0.5, x, y, z, 0, 360, 90, 0);
+            drawEllipse(IdData[0], IdData[1], radius, 0.5, x, y, z, 0, 360, -90, 0);
         }else{
             drawEllipse(IdData[0], IdData[1], radius, 0.5, x, y, z, 0, 360, 0, 0);
         }
@@ -698,7 +698,7 @@
     function pre_drawArc(IdData, x, y, z, radius, en, pit){
         // default: " ",0,0,0,10,"180","立てる"
         if(pit == "立てる"){
-            drawArc(IdData[0], IdData[1], radius, x, y, z, 0, en, 90, 0);
+            drawArc(IdData[0], IdData[1], radius, x, y, z, 0, en, -90, 0);
         }else{
             drawArc(IdData[0], IdData[1], radius, x, y, z, 0, en, 0, 0);
         }
@@ -708,7 +708,7 @@
     function pre_drawArcRadis(IdData, x, y, z, radius, en, pit){
         // default: " ",0,0,0,10,"180","立てる"
         if(pit == "立てる"){
-            drawArcRadis(IdData[0], IdData[1], radius, x, y, z, 0, en, 90, 0);
+            drawArcRadis(IdData[0], IdData[1], radius, x, y, z, 0, en, -90, 0);
         }else{
             drawArcRadis(IdData[0], IdData[1], radius, x, y, z, 0, en, 0, 0);
         }
